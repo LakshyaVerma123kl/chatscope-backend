@@ -1,0 +1,10 @@
+services:
+  - name: chatscope-backend
+    build:
+      type: buildpack
+      buildpacks:
+        - heroku/python
+    run:
+      command: gunicorn analyzer:app
+      ports:
+        - 8000

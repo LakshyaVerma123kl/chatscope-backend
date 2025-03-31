@@ -5,6 +5,7 @@ import emoji
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import asyncio
+import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -250,4 +251,5 @@ def analyze():
         return jsonify({"error": f"Unexpected error: {type(e).__name__}: {str(e)}"}), 500
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.getenv("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
